@@ -238,6 +238,7 @@ const projects = [
     ],
     image: join,
     source_code_link: "https://github.com/",
+    demo_source_code: "youtube.com"
   },
   {
     name: "El Pollo Loco",
@@ -259,6 +260,7 @@ const projects = [
     ],
     image: elpollo,
     source_code_link: "https://github.com/DorianJacekDellAnna/El-Pollo-Loco",
+    demo_source_code: "El_Pollo_Loco /index.html"
   },
 ];
 
