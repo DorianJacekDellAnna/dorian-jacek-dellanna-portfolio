@@ -1,14 +1,24 @@
-import React, { Suspense, useEffect, useState } from "react";
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
+import React, { Suspense, useEffect, useState, useRef } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { Preload, useGLTF } from "@react-three/drei";
 
 import CanvasLoader from "../Loader";
 
-const Computers = ({ isMobile }) => {
+const Computers = ({ isMobile, rotationY }) => {
   const computer = useGLTF("./desktop_pc/scene.gltf");
 
+  // Refs for the mesh and rotation
+  const meshRef = useRef();
+
+  // Update rotation based on rotationY prop
+  useFrame(() => {
+    if (meshRef.current) {
+      meshRef.current.rotation.y = rotationY;
+    }
+  });
+
   return (
-    <mesh>
+    <mesh ref={meshRef}>
       <hemisphereLight intensity={0.15} groundColor="black" />
       <spotLight
         position={[-20, 50, 10]}
@@ -21,8 +31,8 @@ const Computers = ({ isMobile }) => {
       <pointLight intensity={1} />
       <primitive
         object={computer.scene}
-        scale={isMobile ? 0.7 : 0.75}
-        position={isMobile ? [0, -3, -2.2] : [0, -3.25, -1.5]}
+        scale={isMobile ? 0.5 : 0.75} // Smaller object on mobile devices
+        position={isMobile ? [-1, -3, -1.8] : [0, -3.25, -1.5]} // Shift object to the left on mobile devices
         rotation={[-0.01, -0.2, -0.1]}
       />
     </mesh>
@@ -31,6 +41,7 @@ const Computers = ({ isMobile }) => {
 
 const ComputersCanvas = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const [rotationY, setRotationY] = useState(0);
 
   useEffect(() => {
     // Add a listener for changes to the screen size
@@ -45,11 +56,26 @@ const ComputersCanvas = () => {
     };
 
     // Add the callback function as a listener for changes to the media query
-    mediaQuery.addEventListener("change", handleMediaQueryChange);
+    mediaQuery.addListener(handleMediaQueryChange);
 
     // Remove the listener when the component is unmounted
     return () => {
-      mediaQuery.removeEventListener("change", handleMediaQueryChange);
+      mediaQuery.removeListener(handleMediaQueryChange);
+    };
+  }, []);
+
+  // Update rotationY based on scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY || window.pageYOffset;
+      const rotationY = scrollY * 0.002; // Update rotation based on scroll position
+      setRotationY(rotationY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -62,17 +88,8 @@ const ComputersCanvas = () => {
       gl={{ preserveDrawingBuffer: true }}
     >
       <Suspense fallback={<CanvasLoader />}>
-        <OrbitControls
-          autoRotate
-          autoRotateSpeed={0.4}
-          enableZoom={false}
-          maxPolarAngle={Math.PI / 2}
-          minPolarAngle={Math.PI / 2}
-        />
-        <Computers isMobile={isMobile} />
+        <Computers isMobile={isMobile} rotationY={rotationY} />
       </Suspense>
-
-      <Preload all />
     </Canvas>
   );
 };

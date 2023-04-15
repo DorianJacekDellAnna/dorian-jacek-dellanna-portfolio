@@ -29,6 +29,7 @@ import {
   jobit,
   join,
   elpollo,
+  ringoffire,
   tripguide,
   threejs,
 } from "../assets";
@@ -261,6 +262,28 @@ const projects = [
     image: elpollo,
     source_code_link: "https://github.com/DorianJacekDellAnna/El-Pollo-Loco",
     demo_source_code: "projects/El_Pollo_Loco /index.html"
+  },
+  {
+    name: "Ring of fire",
+    description:
+      "Angular app for Ring of Fire card game: Multiplayer game with deck of cards, additional rules. UI displays game state, player actions, card animations. Real-time updates for interactive gameplay.",
+    tags: [
+      {
+        name: "Angular",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "Firebase",
+        color: "green-text-gradient",
+      },
+      {
+        name: "TypeScript",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: ringoffire,
+    source_code_link: "https://github.com/DorianJacekDellAnna/ring-of-fire",
+    demo_source_code: "https://ringoffire-doriandellanna.web.app"
   },
 ];
 

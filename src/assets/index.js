@@ -37,6 +37,7 @@ import jobit from "./jobit.png";
 import tripguide from "./tripguide.png";
 import join from "./join.png";
 import elpollo from "./el-pollo.png";
+import ringoffire from "./ringoffire.jpg"
 
 
 export {
@@ -76,4 +77,5 @@ export {
   tripguide,
   join,
   elpollo,
+  ringoffire
 };
