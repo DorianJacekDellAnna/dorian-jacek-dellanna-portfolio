@@ -14,8 +14,9 @@ const Contact = () => {
     email: "",
     message: "",
   });
-
   const [loading, setLoading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleChange = (e) => {
     const { target } = e;
@@ -51,7 +52,9 @@ const Contact = () => {
       .then(
         () => {
           setLoading(false);
-          alert("Thank you. I will get back to you as soon as possible.");
+          setSuccessMessage(
+            "Thank you. I will get back to you as soon as possible."
+          );
 
           setForm({
             name: "",
@@ -63,7 +66,7 @@ const Contact = () => {
           setLoading(false);
           console.error(error);
 
-          alert("Ahh, something went wrong. Please try again.");
+          setErrorMessage("Ahh, something went wrong. Please try again.");
         }
       );
   };
@@ -78,6 +81,12 @@ const Contact = () => {
       >
         <p className={styles.sectionSubText}>Get in touch</p>
         <h3 className={styles.sectionHeadText}>Contact.</h3>
+
+        {successMessage && (
+          <p className="text-green-500 mb-4">{successMessage}</p>
+        )}
+
+        {errorMessage && <p className="text-red-500 mb-4">{errorMessage}</p>}
 
         <form
           ref={formRef}
