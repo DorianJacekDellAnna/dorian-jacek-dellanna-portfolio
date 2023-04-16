@@ -32,12 +32,10 @@ import uhland from "./company/uhland.png";
 import greut from "./company/greut.png";
 import DA from "./company/DA.png";
 
-import carrent from "./carrent.png";
-import jobit from "./jobit.png";
-import tripguide from "./tripguide.png";
 import join from "./join.png";
 import elpollo from "./el-pollo.png";
 import ringoffire from "./ringoffire.jpg"
+import personalPortfolio from "./Personal-Portfolio.png"
 
 
 export {
@@ -64,7 +62,6 @@ export {
   threejs,
   Bader,
   dm,
-  carrent,
   GuTe,
   Klein,
   Munich1st,
@@ -73,9 +70,8 @@ export {
   uhland,
   greut,
   DA,
-  jobit,
-  tripguide,
   join,
   elpollo,
-  ringoffire
+  ringoffire,
+  personalPortfolio
 };

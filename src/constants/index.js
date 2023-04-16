@@ -25,12 +25,10 @@ import {
   greut,
   ksa,
   DA,
-  carrent,
-  jobit,
   join,
   elpollo,
   ringoffire,
-  tripguide,
+  personalPortfolio,
   threejs,
 } from "../assets";
 
@@ -191,6 +189,17 @@ const education = [
   },
 ];
 
+const testimonials = [
+  {
+    testimonial:
+      "test testimonial text",
+    name: "test name Sara Lee",
+    designation: "CFO",
+    company: "Acme Co",
+    image: "https://randomuser.me/api/portraits/women/4.jpg",
+  },
+];
+
 const projects = [
   {
     name: "Join",
@@ -258,6 +267,28 @@ const projects = [
     source_code_link: "https://github.com/DorianJacekDellAnna/ring-of-fire",
     demo_source_code: "https://ringoffire-doriandellanna.web.app"
   },
+  {
+    name: "Personal Portfolio",
+    description:
+      "My portfolio features projects utilizing Three.js and React, showcasing visually captivating and interactive 3D experiences with a focus on web development.",
+    tags: [
+      {
+        name: "React",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "Three.js",
+        color: "green-text-gradient",
+      },
+      {
+        name: "Tailwind CSS",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: personalPortfolio,
+    source_code_link: "https://github.com/DorianJacekDellAnna/dorian-jacek-dellanna-portfolio",
+    demo_source_code: "https://dorian-jacek-dell-anna.developerakademie.net/"
+  },
 ];
 
 export {
@@ -265,5 +296,6 @@ export {
   technologies,
   experiences,
   education,
+  testimonials,
   projects,
 };
